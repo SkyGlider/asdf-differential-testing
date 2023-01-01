@@ -1,0 +1,11 @@
+{
+    "seed": 2021,
+    "output_dir": "output/test/",
+    "corpus_fpath": "corpus/50-europarl-20000.txt",
+    "tts" : "google",
+    "asrs" : ["deepspeech", "wav2letter", "wav2vec2"],
+    "recompute": true,
+    "time_budget": 1800,
+    "num_iteration": 2,
+    "mutator": "homophone"
+}

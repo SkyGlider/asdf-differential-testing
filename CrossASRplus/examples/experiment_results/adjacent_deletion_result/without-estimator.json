@@ -1,0 +1,41 @@
+{
+  "failed_test_cases_analysis": {
+    "corpus_failed_cases_percentage": 0.173,
+    "corpus_failed_text_percentage": 0.339,
+    "total_corpus_failed_cases": 9548,
+    "total_corpus_failed_text": 6238,
+    "total_corpus_text": 18392,
+    "total_transformed_failed_cases": 7058,
+    "total_transformed_failed_text": 4289,
+    "total_transformed_text": 10575,
+    "transformed_failed_cases_percentage": 0.222,
+    "transformed_failed_text_percentage": 0.406
+  },
+  "number_of_failed_test_cases_all": [
+    9548,
+    16606
+  ],
+  "number_of_failed_test_cases_per_asr": {
+    "deepspeech": [
+      3643,
+      6799
+    ],
+    "wav2letter": [
+      3721,
+      6450
+    ],
+    "wav2vec2": [
+      2184,
+      3357
+    ]
+  },
+  "number_of_failed_text": [
+    6238,
+    10527
+  ],
+  "number_of_processed_texts": [
+    18392,
+    28967
+  ],
+  "total_runtime": 105414.14
+}

@@ -1,0 +1,13 @@
+{
+    "seed": 2021,
+    "output_dir": "output/deletion_full/",
+    "corpus_fpath": "corpus/50-europarl-20000.txt",
+    "tts" : "google",
+    "asrs" : ["deepspeech", "wav2letter", "wav2vec2"],
+    "mutator": "deletion",
+    "recompute": true,
+    "time_budget": 1800,
+    "num_iteration": 5,
+    "text_batch_size": 1200,
+    "estimator": "facebook/bart-base"
+}

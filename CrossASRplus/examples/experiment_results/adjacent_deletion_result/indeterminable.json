@@ -1,0 +1,24 @@
+{
+  "number_of_indeterminable_test_cases_all": [
+    28803,
+    45996
+  ],
+  "number_of_indeterminable_test_cases_per_asr": {
+    "deepspeech": [
+      9601,
+      15332
+    ],
+    "wav2letter": [
+      9601,
+      15332
+    ],
+    "wav2vec2": [
+      9601,
+      15332
+    ]
+  },
+  "number_of_processed_texts": [
+    18392,
+    28967
+  ]
+}
