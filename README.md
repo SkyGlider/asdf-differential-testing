@@ -1,34 +1,26 @@
-# asr-fuzzing-testing
+# ASDF Differential Testing Tool
+
+Automatic testing tools for Automatic Speech Recognition (ASR) systems are used to uncover failed test cases using  ASDF is a differential testing framework for ASR systems. ASDF leverages upon [CrossASR++](https://github.com/soarsmu/CrossASRplus), an existing ASR testing tool that automates the audio test case generation process, and further improves it by incorporating differential testing methods. CrossASR++ selects texts from an input text corpus, converts them into audio using a Text-to-Speech (TTS) service, and uses the audio to test the ASR systems. However, the quality of these tests greatly depend on the quality of the text corpus provided, and may not uncover underlying weaknesses of the ASRs due to the text's limited variation and vocabulary. 
+
+Here, ASDF builds upon CrossASR++ by incoprporating differential testing for ASR systems by applying text transformation methods to the original text inputs that failed in the CrossASR++ ASR testing process, effectively creating new high-quality test cases for ASR systems. We also improved the tool's usability by including a CLI for easier use.
+
+Please check out our (Tool Demonstration video)[] and (PDF preprint)[].
 
 ## Initial Setup
 
 ### WSL
-- Set up WSL to use Linux from Window. [Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
-- It's recommended to store your local repo under linux home directory instead of /mnt/<drive>/... because the file naming will cause issue (eg. filename is not case sensitive in Window file system)
-- To access Window files in WSL: WSL mounts your machine's fixed drives under the /mnt/<drive> folder in your Linux distros. For example, your C: drive is mounted under /mnt/c/
-- To connect to internet, change the `nameserver` in `etc/resolv.conf` to 8.8.8.8
-[Stackoverflow](https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux)
-- `etc/resolv.conf` will reset everytime you restart WSL. To solve this issue, look at this [post](https://askubuntu.com/questions/1347712/make-etc-resolv-conf-changes-permanent-in-wsl-2)
+1. Set up WSL to use Linux in Windows. [Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
+2. To access Window files in WSL: WSL mounts your machine's fixed drives under the /mnt/<drive> folder in your Linux distros. For example, your C: drive is mounted under /mnt/c/
+3. It is recommended to store your local repo under your Linux distro home directory instead of /mnt/<drive>/... because differing file naming systems will cause issues (eg. filename is not case sensitive in Windows file system)
+4. To connect to the Internet, change the `nameserver` in `etc/resolv.conf` to 8.8.8.8. [Stackoverflow](https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux)
+5. `etc/resolv.conf` will reset everytime you restart WSL. To solve this issue, look at this [post](https://askubuntu.com/questions/1347712/make-etc-resolv-conf-changes-permanent-in-wsl-2)
 
-### Jupyter notebook in WSL
-1. How to create venv with python3.8 (python3.10 doesn't work) [Stackoverflow](https://stackoverflow.com/questions/70422866/how-to-create-a-venv-with-a-different-python-version)
-2. Activate venv using `source env/bin/activate`
-3. Open Jupyter notebook using `jupyter notebook`
-4. Run this only once after you have set up venv `bash install_requirement.sh`
+### Docker Desktop
+1. Download [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. If you are using WSL, set up Docker Desktop for Windows with WSL 2. [Guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
 
-### Packages to install
-1. ffmpeg: `sudo apt install ffmpeg`
-2. festival: `sudo apt install festival`
-3. espeak: `sudo apt install espeak`
+## Usage
+Go to the `example` directory using 
+`cd asdf-differential-testing/CrossASRplus/examples`
 
-### Docker
-1. Download Docker Desktop
-2. If you are using WSL. You need to do this. [Guide](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
-
-### Commands to run test_asr.py
-1. Go to example directory: `cd asr-fuzzing-testing/CrossASRplus/examples`
-2. Activate your venv `source ../env/bin/activate` (might be different path for you)
-3. Start docker container: `docker run --name wav2letter -it --rm -v "$(pwd)/data/:/root/host/data/" -v "$(pwd)/output/:/root/host/output/" -v "$(pwd)/asr_models/:/root/host/models/" --ipc=host -a stdin -a stdout -a stderr wav2letter/wav2letter:inference-latest`
-4. Set your environment (or you can make it persistent): `export WIT_ACCESS_TOKEN=<your_token>`
-5. Test if everything works: `python cross_reference.py config_corpus.json`
-6. Run test_asr.py: `python test_asr.py config_corpus.json`
+Execute the batch file
