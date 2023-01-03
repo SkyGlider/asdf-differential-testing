@@ -41,8 +41,12 @@ Four folders are created within this directory:
     1. `all_test_cases.json`: JSON file which has a key for each iteration containing an array value detailing the outcome of each text input.
     2. `indeterminable.json`: JSON file detailing the statistics of indeterminable test cases.
     3. `without_estimator.json`: JSON file detailing the statistics of failed test cases.
-    4. `phoneme_graph.pdf`: PDF file graphing each phoneme within the processed text corpus and its respective frequency of failure.
-    5. `asr_comparison.csv`: CSV file containing two different tables for self-analysis.
+    4. `failed_test_cases_analysis.txt`: TXT file detailing the statistics of failed test cases.
+    5. `phoneme_graph.pdf`: PDF file graphing each phoneme within the processed text corpus and its respective frequency of failure.
+    6. `asr_comparison.csv`: CSV file containing two different tables for self-analysis, failed cases per ASR and failed cases per text input.
 
 ## Example Analysis
-Some of the analysis that can be done by graphing the data in the CSV file are as follows.
+Some of the analysis that can be done by graphing the data in the CSV file are as follows:
+![Failed Cases per ASR](images/per_asr.png)
+
+![Failed Cases per Text Input](images/per_text_input.png)
