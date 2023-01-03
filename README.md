@@ -47,6 +47,10 @@ Four folders are created within this directory:
 
 ## Example Analysis
 Some of the analysis that can be done by graphing the data in the CSV file are as follows:
-![Failed Cases per ASR](images/per_asr.png)
 
-![Failed Cases per Text Input](images/per_text_input.png)
+<img src="images/per_asr.png" width="630" height="400"></img> \
+*Example 1: Failed test cases per ASR, where ASRs which are more failure-prone can be identified*
+
+
+<img src="images/per_text_input.png" width="700" height="400"></img> \
+*Example 2: Failed test cases per text input, where areas in the input corpus which cause the most failures can be analysed*
