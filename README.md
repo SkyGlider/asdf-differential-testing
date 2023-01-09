@@ -2,9 +2,20 @@
 
 Automatic testing tools for Automatic Speech Recognition (ASR) systems are used to uncover failed test cases using  ASDF is a differential testing framework for ASR systems. ASDF leverages upon [CrossASR++](https://github.com/soarsmu/CrossASRplus), an existing ASR testing tool that automates the audio test case generation process, and further improves it by incorporating differential testing methods. CrossASR++ selects texts from an input text corpus, converts them into audio using a Text-to-Speech (TTS) service, and uses the audio to test the ASR systems. However, the quality of these tests greatly depend on the quality of the text corpus provided, and may not uncover underlying weaknesses of the ASRs due to the text's limited variation and vocabulary. 
 
-Here, ASDF builds upon CrossASR++ by incoprporating differential testing for ASR systems by applying text transformation methods to the original text inputs that failed in the CrossASR++ ASR testing process, effectively creating new high-quality test cases for ASR systems. We also improved analysis by providing high-level summaries of failed test cases and a graph of phonemes in the text input against their frequency of failure. Finally, we improved the tool's usability by including a CLI for easier use. 
+Here, ASDF builds upon CrossASR++ by incoprporating differential testing for ASR systems by applying text transformation methods to the original text inputs that failed in the CrossASR++ ASR testing process, effectively creating new high-quality test cases for ASR systems. The text transformation methods used are homophone transformation, augmentation, plurality transformation, tense transformation and adjacent deletion. We also improved analysis by providing high-level summaries of failed test cases and a graph of phonemes in the text input against their frequency of failure. Finally, we improved the tool's usability by including a CLI for easier use. 
 
-Please check out our (Tool Demonstration video)[] and (PDF preprint)[].
+Please check out our Tool Demonstration video and PDF preprint.
+
+## Transformation Methods
+1. **Homophone Transformation**: Identifies the error-inducing term of the failed test case. Following that, a homophone of the error-inducing term is found, and an example sentence that contains that homophone is obtained through the usage of an online dictionary API. The example sentence will then be used as the new test case. Only transforms texts with an error-inducing term that has a homophone.
+
+2. **Augmentation**: Randomly inserts a word into the failed test case through contextual word embedding. After insertion, the sentence is used as the new test case. Does not use the error-inducing term in its text transformation process.
+
+3. **Adjacent Deletion**: Identifies the error-inducing term of the failed test case. Subsequently, the words adjacent to the error-inducing term in the sentence are deleted. The sentence after the deletion is then used as the new test case.
+
+4. **Plurality Transformation**: Identifies the error-inducing term of the failed test case. It then converts the error-inducing terms in the failed test case from singular nouns to plural nouns.
+
+5. **Tense Transformation**: Identifies the verbs that express the grammatical tense and changes them to the past tense. Does not use the error-inducing term in its text transformation process.
 
 ## Initial Setup
 
@@ -41,12 +52,16 @@ Four folders are created within this directory:
     1. `all_test_cases.json`: JSON file which has a key for each iteration containing an array value detailing the outcome of each text input.
     2. `indeterminable.json`: JSON file detailing the statistics of indeterminable test cases.
     3. `without_estimator.json`: JSON file detailing the statistics of failed test cases.
-    4. `failed_test_cases_analysis.txt`: TXT file detailing the statistics of failed test cases.
+    4. `failed_test_cases_analysis.txt`: Text file detailing the statistics of failed test cases.
     5. `phoneme_graph.pdf`: PDF file graphing each phoneme within the processed text corpus and its respective frequency of failure.
     6. `asr_comparison.csv`: CSV file containing two different tables for self-analysis, failed cases per ASR and failed cases per text input.
 
 ## Example Analysis
 Some of the analysis that can be done by graphing the data in the CSV file are as follows:
-![Failed Cases per ASR](images/per_asr.png)
 
-![Failed Cases per Text Input](images/per_text_input.png)
+<img src="images/per_asr.png" width="630" height="400"></img> \
+*Example 1: Failed test cases per ASR, where ASRs which are more failure-prone can be identified*
+
+
+<img src="images/per_text_input.png" width="700" height="400"></img> \
+*Example 2: Failed test cases per text input, where areas in the input corpus which cause the most failures can be analysed*

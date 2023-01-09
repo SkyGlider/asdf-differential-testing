@@ -503,17 +503,18 @@ class CrossASR:
         data['total_runtime'] = round(end_time - start_time, 2)
         if self.getMutator():
             data["failed_test_cases_analysis"] = self.getMutator().get_failed_test_cases_analysis(len(self.asrs))
+
+            with open(self.outputfile_failed_test_cases_analysis_txt, 'w') as outfile:
+                for key, value in data["failed_test_cases_analysis"].items():
+                    outfile.write(key + ": " + str(value))
+                    outfile.write('\n')
+                    
         data["number_of_failed_test_cases_all"] = num_failed_test_cases
         data["number_of_failed_test_cases_per_asr"] = num_failed_test_cases_per_asr
         data["number_of_failed_text"] = num_failed_text
         data["number_of_processed_texts"] = num_processed_texts
         with open(self.outputfile_failed_test_case, 'w') as outfile:
             json.dump(data, outfile, indent=2, sort_keys=True)
-
-        with open(self.outputfile_failed_test_cases_analysis_txt, 'w') as outfile:
-            for key, value in data["failed_test_cases_analysis"].items():
-                outfile.write(key + ": " + str(value))
-                outfile.write('\n')
 
         header = list(num_failed_test_cases_per_asr.keys())
         with open(self.outputfile_asr_comparison_csv, 'w', newline='') as outfile:

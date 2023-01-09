@@ -22,7 +22,7 @@ DEFAULT_OUTPUT_DIR = "output/default"
 DEFAULT_NUM_TEXTS = 100
 MUTATORS = {
     "homophone":"Swaps the erroneous word(s) with a similar sounding alternative word(s)",
-    "augmentation":"Inserts a new word adjacent to the erroneous word(s)",
+    "augmenter":"Inserts a new word adjacent to the erroneous word(s)",
     "plurality":"Swaps the erroneous word(s) with its plural/singular form",
     "tense":"Changes the errroneous sentence to a different tense",
     "deletion":"Deletes a preceding or suceeding word adjacent to the erroneous word(s)"}
