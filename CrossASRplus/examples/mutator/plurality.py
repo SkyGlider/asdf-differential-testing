@@ -24,28 +24,27 @@ class Pluralizer(Mutator):
         replace all the error words in the texts to homophone
         """
         mutated_sentences = []
-        transcription_results = self.get_transcription_results()
-        for i in range(len(transcription_results)):
-            text = transcription_results[i].text
-            transcriptions = transcription_results[i].transcriptions
-            cases = transcription_results[i].cases
-            filename = transcription_results[i].filename
+        failed_transcription_results = self.get_not_mutated_failed_transcription_results()
+        for i in range(len(failed_transcription_results)):
+            text_obj = failed_transcription_results[i].get_text()
+            text = text_obj.getText()
+            filename = text_obj.getFilename()
+            transcriptions = failed_transcription_results[i].get_transcriptions()
+            cases = failed_transcription_results[i].get_cases()
+            
+            error_words = self.get_all_error_words(text, transcriptions, cases)
+            text_tokens = text.strip().split()
+            print("Original:", text)
 
-            if FAILED_TEST_CASE in cases.values():
+            for j, text_word in enumerate(text_tokens):
+                if text_word in error_words:
+                    text_tokens[j] = self.get_plural(text_word)
 
-                error_words = self.get_all_error_words(text, transcriptions, cases)
-                text_tokens = text.strip().split()
-                print("Original:", text)
+            joined_sentence = " ".join(text_tokens).strip()
+            print("Transformed:", joined_sentence)
 
-                for j, text_word in enumerate(text_tokens):
-                    if text_word in error_words:
-                        text_tokens[j] = self.get_plural(text_word)
-
-                joined_sentence = " ".join(text_tokens).strip()
-                print("Transformed:", joined_sentence)
-
-                if text.strip() != joined_sentence:
-                    mutated_sentences.append(Text(filename, joined_sentence))
+            if text.strip() != joined_sentence:
+                mutated_sentences.append(Text(id=filename,text=joined_sentence, is_mutated=True, original_sentence=text, error_words=error_words))
 
         return mutated_sentences
 
