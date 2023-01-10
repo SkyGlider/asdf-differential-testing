@@ -69,9 +69,23 @@ Four folders are created within this directory:
     1. `all_test_cases.json`: JSON file which has a key for each iteration containing an array value detailing the outcome of each text input.
     2. `indeterminable.json`: JSON file detailing the statistics of indeterminable test cases.
     3. `without_estimator.json`: JSON file detailing the statistics of failed test cases.
-    4. `failed_test_cases_analysis.txt`: Text file detailing the statistics of failed test cases.
+    4. `failed_test_cases_analysis.txt`: Text file detailing the performance the ASRs using 10 different metrics.
     5. `phoneme_graph.pdf`: PDF file graphing each phoneme within the processed text corpus and its respective frequency of failure.
     6. `asr_comparison.csv`: CSV file containing two different tables for self-analysis, failed cases per ASR and failed cases per text input.
+    
+### Metrics
+10 metrics can be found within `failed_test_cases_analysis.txt`. A failed text is defined as an input text that was incorrectly transcribed by at least one ASR service. A text input must be transcribed correctly by at least one ASR service to be deemed valid (or determinable); otherwise, it is deemed as indeterminable and is discarded. A failed case, on the other hand, is defined as a specific text output from an individual ASR service that does not match its corresponding input text.  
+    
+1. `corpus_failed_cases_percentage`: Percentage of failed cases from the input corpus only.
+2. `corpus_failed_text_percentage`: Percentage of failed texts from the input corpus only.
+3. `total_corpus_failed_cases`: Total number of failed cases from the input corpus.
+4. `total_corpus_failed_text`: Total number of failed texts from the input corpus.
+5. `total_corpus_text`: Total number of texts from the input corpus.
+6. `total_transformed_failed_cases`: Total number of failed cases from transformed texts.
+7. `total_transformed_failed_text`: Total number of failed texts from transformed texts.
+8. `total_transformed_text`: Total number of transformed texts.
+9. `transformed_failed_cases_percentage`: Percentage of failed cases from transformed texts only.
+10. `transformed_failed_text_percentage`: Percentage of failed texts from transformed texts only.
 
 ## Example Analysis
 Some of the analysis that can be done by graphing the data in the CSV file are as follows:
