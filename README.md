@@ -7,15 +7,32 @@ Here, ASDF builds upon CrossASR++ by incoprporating differential testing for ASR
 Please check out our Tool Demonstration video and PDF preprint.
 
 ## Transformation Methods
-1. **Homophone Transformation**: Identifies the error-inducing term of the failed test case. Following that, a homophone of the error-inducing term is found, and an example sentence that contains that homophone is obtained through the usage of an online dictionary API. The example sentence will then be used as the new test case. Only transforms texts with an error-inducing term that has a homophone.
+1. **Homophone Transformation**: Identifies the error-inducing term of the failed test case. Following that, a homophone of the error-inducing term is found, and an example sentence that contains that homophone is obtained through the usage of an online dictionary API. The example sentence will then be used as the new test case. Only transforms texts with an error-inducing term that has a homophone. Each homophone will produce a new test case.
 
-2. **Augmentation**: Randomly inserts a word into the failed test case through contextual word embedding. After insertion, the sentence is used as the new test case. Does not use the error-inducing term in its text transformation process.
+2. **Augmentation**: Randomly inserts words into the failed test case through contextual word embedding. After insertion, the sentence is used as the new test case. Does not use the error-inducing term in its text transformation process.
 
-3. **Adjacent Deletion**: Identifies the error-inducing term of the failed test case. Subsequently, the words adjacent to the error-inducing term in the sentence are deleted. The sentence after the deletion is then used as the new test case.
+3. **Adjacent Deletion**: Identifies the error-inducing term of the failed test case. Subsequently, the words adjacent to the error-inducing term in the sentence are deleted. The sentence after the deletion is then used as the new test case. Produces the same number of test cases as the number of error-inducing terms with each test case deleting adjacent words from a single error-inducing term. 
 
-4. **Plurality Transformation**: Identifies the error-inducing term of the failed test case. It then converts the error-inducing terms in the failed test case from singular nouns to plural nouns.
+4. **Plurality Transformation**: Identifies the error-inducing term of the failed test case. It then converts the error-inducing terms in the failed test case from singular nouns to plural nouns. Only transforms texts with an error-inducing term that is a noun. Produces a single test case output with all error-inducing nouns transformed.
 
-5. **Tense Transformation**: Identifies the verbs that express the grammatical tense and changes them to the past tense. Does not use the error-inducing term in its text transformation process.
+5. **Tense Transformation**: Identifies the verbs that express the grammatical tense and changes them to the past tense. Does not use the error-inducing term in its text transformation process. Produces a single test case with all error-inducing verbs transformed.
+
+### Example Transformations
+
+| Original Text | Error Terms |
+|---|---|
+| this has been done in no less than fifteen member states and through the medium of twelve community languages | in, fifteen, member |
+
+
+| Text Transformation Method | Affected Terms | Transformed Text | 
+|---|---|---|
+| **Homophone Transformation** | First error term homophone transformation: *in* | the *inns* of court the *inns* of chancery serjeants *inns* |
+| **Augmentation** | - | this *service* has been *being* done in no less than *his* fifteen member states and *varies* through the medium of *nearly* twelve community *spoken* languages |
+| **Adjacent Deletion** | First error term adjacent deletion: *done, no* | this has been in less than fifteen member states and through the medium of twelve community languages |
+| **Plurality Transformation** | All error-inducing nouns: *in, fifteen, member* | this has been done *ins* no less than *fifteens* *members* states and through the medium of twelve community languages |
+| **Tense Transformation** | All verbs: *has, been, done* | this *had* *was* *did* in no less than fifteen member states and through the medium of twelve community languages |
+
+*Note: For Homophone Transformation and Adjacent Deletion, other test cases can be created based on the other error-inducing terms. However, there are no homophones for **fifteen** or **member** and only produces a single test case for **in**. For Adjacent Deletion, the other two test cases are not shown.*
 
 ## Initial Setup
 

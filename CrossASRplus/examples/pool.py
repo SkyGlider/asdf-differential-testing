@@ -20,4 +20,4 @@ from mutator.deletion import Deletion
 
 tts_pool = [Google(), Espeak(), Festival(), ResponsiveVoice()]
 asr_pool = [Wav2Vec2(), DeepSpeech(), DeepSpeech2(), Wav2Letter(), Wit()]
-mutator_pool = [Tense(), Tense2(), Homophone(), Augmenter(), Pluralizer(), Deletion()]
+mutator_pool = [Tense(), Homophone(), Augmenter(), Pluralizer(), Deletion()]

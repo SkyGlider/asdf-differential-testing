@@ -18,30 +18,31 @@ class Tense(Mutator):
         replace all verbs in text with past tense
         """
         mutated_sentences = []
-        transcription_results = self.get_transcription_results()
-        for i in range(len(transcription_results)): 
-            text = transcription_results[i].text
-            transcriptions = transcription_results[i].transcriptions
-            cases = transcription_results[i].cases
-            filename = transcription_results[i].filename
+        failed_transcription_results = self.get_not_mutated_failed_transcription_results()
 
-            if FAILED_TEST_CASE in cases.values() :
-                new_sentence = self.transform_tense(text)
+        for i in range(len(failed_transcription_results)): 
+            text_obj = failed_transcription_results[i].get_text()
+            text = text_obj.getText()
+            filename = text_obj.getFilename()
+            transcriptions = failed_transcription_results[i].get_transcriptions()
+            cases = failed_transcription_results[i].get_cases()
+            
+            error_words = self.get_all_error_words(text, transcriptions, cases)
+            mutated_sentence = self.transform_tense(text)
 
-                # no plurals and new sentence is different
-                if (new_sentence is not None) and (new_sentence != text):
-                    mutated_sentences.append(Text(filename, new_sentence))
+            # no plurals and new sentence is different
+            if (mutated_sentence is not None) and (mutated_sentence != text):
+                mutated_sentences.append(Text(id=filename, text=mutated_sentence, is_mutated=True, original_sentence=text, error_words=error_words))
         return mutated_sentences
 
     def transform_tense(self, text: str):
         doc_dep = self.model(text)
+        VERBS = ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
+
         for i in range(len(doc_dep)):
             token = doc_dep[i]
-            # plural noun, not supported by spaCy
-            # if token.tag_ in ['NNS']:
-            #     return 
-            # non-3rd person present singular verb, 3rd person present singular verb 
-            if token.tag_ in ['VBP', 'VBZ']:
+            # replace all types of verbs, disregarding grammar
+            if (token.tag_ in VERBS) and (token._.inflect("VBD")):
                 text = text.replace(' '+token.text+' ', ' '+token._.inflect("VBD")+' ')
         return text
         
