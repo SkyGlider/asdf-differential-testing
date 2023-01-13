@@ -1,4 +1,4 @@
-# Usage of ASDDF
+# Usage of ASDF
 
 1. [Enable WSL](##1-enable-wsl)
 2. [Install Python](##2-install-python)
@@ -9,7 +9,7 @@
 
 ### 1.1. Follow this link to enable Windows Subsystem for Linux
 
-Please follow [this link for the turtorial](https://learn.microsoft.com/en-us/windows/wsl/install)
+Please follow [this link for the tutorial](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 ### 1.2. Install Ubuntu Image from Microsoft Store
 
@@ -26,7 +26,7 @@ wsl -d Ubuntu
 
 Note: Newer versions of python does not work!
 
-### 2.1 Add deadsnakes repository
+### 2.1 Add deadsnakes Repository
 
 ```bash
 sudo apt update
@@ -39,7 +39,7 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt install python 3.8 python3.8-venv
 ```
 
-## 3. Install Docker and pull ASR Images
+## 3. Install Docker and Pull ASR Images
 
 ### 3.1. Install Docker Dekstop
 
