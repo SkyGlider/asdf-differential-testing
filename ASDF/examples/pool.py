@@ -12,7 +12,6 @@ from asr.wit import Wit
 from mutator.homophone import Homophone
 from mutator.augmenter import Augmenter
 from mutator.tense import Tense
-from mutator.tense2 import Tense2
 from mutator.plurality import Pluralizer
 from mutator.insertion import Insertion
 from mutator.swap import Swap

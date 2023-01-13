@@ -29,7 +29,7 @@ MUTATORS = {
 
 if __name__ == "__main__":
     # parse input args from batch file
-    corpus_fpath = input("Enter the directory of the input corpus: ")
+    corpus_fpath = input("Enter the path to the input corpus: ")
     output_fpath = input("Enter the directory for the results output: ")
     num_texts = input("Enter the number of corpus texts to test: ")
     for asr in DEFAULT_ASRS:
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     print("Mutators Available:")
     for m, d in MUTATORS.items():
         print(m,"-",d)
-    mutator_selected = input("Select a mutator from above to apply onto failed test cases (e.g. plurality): ")
+    mutator_selected = input("Select a transformation method from above to apply onto failed test cases (e.g. plurality): ")
 
     corpus_fpath = corpus_fpath if corpus_fpath != "" else DEFAULT_CORPUS_FPATH
     asrs = utils.getASRS(DEFAULT_ASRS)
