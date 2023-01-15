@@ -4,8 +4,6 @@ Automatic testing tools for Automatic Speech Recognition (ASR) systems are used 
 
 Here, ASDF builds upon CrossASR++ by incoprporating differential testing for ASR systems by applying text transformation methods to the original text inputs that failed in the CrossASR++ ASR testing process, effectively creating new high-quality test cases for ASR systems. The text transformation methods used are homophone transformation, augmentation, plurality transformation, tense transformation and adjacent deletion. We also improved analysis by providing high-level summaries of failed test cases and a graph of phonemes in the text input against their frequency of failure. Finally, we improved the tool's usability by including a CLI for easier use. 
 
-Please check out our Tool Demonstration video and PDF preprint.
-
 ## Transformation Methods
 1. **Homophone Transformation**: Identifies the error-inducing term of the failed test case. Following that, a homophone of the error-inducing term is found, and an example sentence that contains that homophone is obtained through the usage of an online dictionary API. The example sentence will then be used as the new test case. Only transforms texts with an error-inducing term that has a homophone. Each homophone will produce a new test case.
 
