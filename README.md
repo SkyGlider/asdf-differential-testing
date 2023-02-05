@@ -17,10 +17,13 @@ Here, ASDF builds upon CrossASR++ by incorporating differential testing for ASR 
 
 ### Example Transformations
 
+<p align="center"><b>Table I: Original text input</b></p>
+
 | Original Text | Error Terms |
 |---|---|
 | this has been done in no less than fifteen member states and through the medium of twelve community languages | in, fifteen, member |
 
+<p align="center"><b>Table II: Text transformation methods and transformed texts</b></p>
 
 | Text Transformation Method | Affected Terms | Transformed Text | 
 |---|---|---|
@@ -74,6 +77,8 @@ Four folders are created within this directory:
 ### Metrics
 Ten metrics can be found within `failed_test_cases_analysis.txt`. A failed text is defined as an input text that was incorrectly transcribed by at least one ASR service. A text input must be transcribed correctly by at least one ASR service to be deemed valid (or determinable); otherwise, it is considered indeterminable and discarded. A failed case, on the other hand, is defined as a specific text output from an individual ASR service that does not match its corresponding input text.  
 
+<p align="center"><b>Table III: Explanation of each metric</b></p>
+
 | Metric | Explanation |
 |---|---|
 | `total_corpus_text`                       | Total number of texts in the corpus. |
@@ -96,3 +101,4 @@ Some analysis that can be done by graphing the data in the CSV file are as follo
 
 <img src="images/per_text_input.png" width="700" height="400"></img> \
 *Example 2: Failed test cases per text input, where areas in the input corpus which cause the most failures can be analysed*
+
