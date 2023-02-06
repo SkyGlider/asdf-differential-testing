@@ -59,6 +59,8 @@ For certain selections, the default settings are used if not specified by the us
 - ASRs: `deepspeech`, `wav2letter`, `wav2vec`
 - Number of texts to be processed: 100
 
+*Note: Setup and usage has only been tested on Windows running WSL.*
+
 ## Results
 Once testing is completed, a folder containing the results can be found within the `output` directory specified by user input. If none is specified, it defaults to `CrossASRplus/examples/output/default`.
 
