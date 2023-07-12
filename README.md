@@ -1,4 +1,4 @@
-# ASDF: A Differential Testing Framework for ASR Systems
+# Copy of ASDF: A Differential Testing Framework for ASR Systems
 
 Automatic testing tools for Automatic Speech Recognition (ASR) systems are used to uncover failed test cases using test cases from generated audio derived from a corpus of text. ASDF is a differential testing framework for ASR systems that leverages upon [CrossASR++](https://github.com/soarsmu/CrossASRplus), an existing ASR testing tool that automates the audio test case generation process, and further improves it by incorporating differential testing methods. CrossASR++ selects texts from an input text corpus, converts them into audio using a Text-to-Speech (TTS) service, and uses the audio to test the ASR systems. However, the quality of these tests greatly depends on the quality of the text corpus provided and may not uncover underlying weaknesses of the ASRs due to the text's limited variation and vocabulary. 
 
